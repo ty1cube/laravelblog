@@ -19,14 +19,14 @@ class PostsTableSeeder extends Seeder
      // generate 10 dummy posts data
      $posts = [];
      $faker = Factory::create();
-     $date = Carbon::create(2017, 12, 24, 12);
+     $date = Carbon::create(2017, 12, 13, 12);
 
      for ($i = 1; $i <= 10; $i++)
      {
          $image = "Post_Image_" . rand(1, 5) . ".jpg";
           $date->addDays(1);
          //$date=date("Y-m-d H:l:s", strtotime("2017-12-24 12:00:00 +{$i} days") );
-         // $publishedDate = clone($date);
+         $publishedDate = clone($date);
          $createdDate   = clone($date);
 
          $posts[] = [
@@ -37,8 +37,8 @@ class PostsTableSeeder extends Seeder
              'slug'         => $faker->slug(),
              'image'        => rand(0, 1) == 1 ? $image : NULL,
              'created_at'   => $createdDate,
-             'updated_at'   => $createdDate
-             //'published_at' => $i < 5 ? $publishedDate : ( rand(0, 1) == 0 ? NULL : $publishedDate->addDays(4) )
+             'updated_at'   => $createdDate,
+             'published_at' => $i < 5 ? $publishedDate : ( rand(0, 1) == 0 ? NULL : $publishedDate->addDays(3) )
          ];
      }
 
